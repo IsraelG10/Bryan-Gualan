@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { Producto } from 'src/app/_model/productos';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductosService } from 'src/app/_service/productos.service';
 import { VentaListaProductoDTO } from 'src/app/_dto/VentaListaProductoDTO';
+import { ConsultaListaExamenDTO } from 'src/app/_dto/consultaListaExamenDTO';
 
 @Component({
   selector: 'app-ventas-edit',
@@ -27,16 +28,19 @@ export class VentasEditComponent implements OnInit {
   producto : Producto[] = []
   productoSeleccionados : Producto[] = []
 
+  @Input() disabled = false;
 
   diagnostico : string
   tratamiento : string
   mensaje : string
-  valor1=0;;
-  valor2=0
-  resultado=0;
+  valor1=0;
+  valor2=0;
+  total: number;
 
   pacienteSeleccionado : Paciente
   productoSeleccionado : Producto
+  cantidad: Producto;
+
 
   myControlPaciente: FormControl = new FormControl()
 
@@ -46,6 +50,7 @@ export class VentasEditComponent implements OnInit {
   fechaSeleccionada : Date = new Date()
 
   constructor(
+    private dialogRef : MatDialogRef<VentasEditComponent>,
     private pacienteService : PacienteService,
     private productosService : ProductosService,
     private snackBar : MatSnackBar,
@@ -57,6 +62,7 @@ export class VentasEditComponent implements OnInit {
       'paciente' : this.myControlPaciente,
       'total' : new FormControl,
       'fecha' : new FormControl(new Date),
+      'valor1': new FormControl('')
     })
 
     this.listarPacientes()
@@ -134,6 +140,7 @@ export class VentasEditComponent implements OnInit {
     //consulta.especialidad = this.especialidadSeleccionada
     consulta.paciente = this.form.value['paciente']
 
+
     let tzoffset = (this.fechaSeleccionada).getTimezoneOffset()*60000
     let localISOTime = (new Date(Date.now() - tzoffset)).toISOString()
 
@@ -147,12 +154,15 @@ export class VentasEditComponent implements OnInit {
     this.ventasService.registrar(consultaListaExamenDTO).subscribe( () =>{
       this.snackBar.open("Se registro", "Aviso", {
         duration: 3000
-      })
+      });
 
       setTimeout(() => {
         this.limpiarControles()
       }, 3000)
+
     })
+    this.dialogRef.close();
+
   }
 
   limpiarControles(){
@@ -164,9 +174,13 @@ export class VentasEditComponent implements OnInit {
   }
 
   Sumar() {
-    this.valor2 = this.productoSeleccionados.push(this.productoSeleccionado);
-    this.resultado = this.valor1 * this.valor2;
-    console.log(this.resultado);
+      this.valor2 = this.productoSeleccionado.precio;
+      if (this.productoSeleccionado.cantidad > this.productoSeleccionado.cantidad) {
+        this.mensaje = 'El Producto no puede ser Ingresado NO hay tantos'
+      } else {
+      this.total = this.valor1 + this.valor2;
+    }
+
   }
 
 }

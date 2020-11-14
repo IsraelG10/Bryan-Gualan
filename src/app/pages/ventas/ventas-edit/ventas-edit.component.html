@@ -9,15 +9,12 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-
     <mat-form-field appearance="fill">
       <mat-label>Escoja una fecha</mat-label>
       <input matInput [matDatepicker]="picker" [max]="maxFecha" [(ngModel)]="fechaSeleccionada" formControlName="fecha">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-
-
     <mat-form-field appearance="fill">
       <mat-label>Productos</mat-label>
       <mat-select [(value)]="productoSeleccionado">
@@ -28,21 +25,23 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="button" (click)="agregarExamen()">Agregar Productos</button>
-
-
-
     <mat-toolbar *ngFor="let ex of productoSeleccionados; let i=index">
       {{ex.nombre}}
       <span class="example-spacer"></span>
       <button mat-raised-button color="warn" style="margin: auto;" (click)="removerExamen(i)">Remover</button>
     </mat-toolbar>
+    <div *ngFor="let ex of productoSeleccionados; let i=index">
+      <h5>Cantidad: {{ex.cantidad}}    <span></span> Precio: {{ex.precio}}</h5>
+    </div>
     <mat-form-field>
-      <input matInput [(ngModel)]="valor1" type="number" placeholder="Que cantidad desea">
+      <input matInput [(ngModel)]="valor1" type="number" placeholder="Que cantidad desea" formControlName="valor1">
     </mat-form-field>
-    <button mat-raised-button color="primary" type="button" (click)="Sumar()" ><mat-icon>add_shopping_cart</mat-icon></button>
-    <mat-form-field class="example-full-width">
 
-      <input matInput placeholder="Totla de la Ventas " required formControlName="total">
+
+    <button mat-raised-button color="primary" type="button" (click)="Sumar()" ><mat-icon>add_shopping_cart</mat-icon></button>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="total" [(value)]="total" [disabled]="true" placeholder="Total de la Ventas " formControlName="total">
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit">Registrar</button>
