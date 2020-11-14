@@ -1,0 +1,50 @@
+<mat-toolbar>Registro de Consulta Especial</mat-toolbar>
+
+<form class="example-container" [formGroup]="form" #consultaForm="ngForm" (ngSubmit)="aceptar()">
+  <mat-form-field>
+    <input type="text" placeholder="Paciente" matInput [matAutocomplete]="autoPaciente" [formControl]="myControlPaciente" formControlName="paciente">
+    <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="mostrarPaciente" (optionSelected)="seleccionarPaciente($event)">
+      <mat-option *ngFor="let p of pacientesFiltrados | async"  [value]="p">
+        {{p.nombres}} {{p.apellidos}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Escoja una fecha</mat-label>
+      <input matInput [matDatepicker]="picker" [max]="maxFecha" [(ngModel)]="fechaSeleccionada" formControlName="fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Productos</mat-label>
+      <mat-select [(value)]="productoSeleccionado">
+        <mat-option *ngFor="let ex of producto" [value]="ex">
+          {{ex.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="button" (click)="agregarExamen()">Agregar Productos</button>
+
+
+
+    <mat-toolbar *ngFor="let ex of productoSeleccionados; let i=index">
+      {{ex.nombre}}
+      <span class="example-spacer"></span>
+      <button mat-raised-button color="warn" style="margin: auto;" (click)="removerExamen(i)">Remover</button>
+    </mat-toolbar>
+    <mat-form-field>
+      <input matInput [(ngModel)]="valor1" type="number" placeholder="Que cantidad desea">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="button" (click)="Sumar()" ><mat-icon>add_shopping_cart</mat-icon></button>
+    <mat-form-field class="example-full-width">
+
+      <input matInput placeholder="Totla de la Ventas " required formControlName="total">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Registrar</button>
+
+</form>

@@ -1,0 +1,65 @@
+<mat-card>Ingrese los datos del paciente</mat-card>
+<form class="example-container" [formGroup]="form" #frmPaciente="ngForm" (ngSubmit)="operar()">
+
+  <div [hidden] = "true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" formControlName="id">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <div *ngIf="f.apellidos.errors?.required" class="invalido">Nombre es Requerido</div>
+    <div *ngIf="f.apellidos.errors?.minlength" class="invalido">El campo debe ser mayor a 3 caracteres</div>
+    <input matInput placeholder="Apellidos" minlength="3" required formControlName="apellidos">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nombres" minlength="2" required formControlName="nombres">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Cédula" minlength="2" required formControlName="cedula" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Teléfono" minlength="2" required formControlName="telefono" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Dirección" minlength="2" required formControlName="direccion">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" minlength="2" required formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Edad" minlength="2" required formControlName="edad" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Sexo" minlength="1" maxlength="1" required formControlName="sexo">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Tipo Sangre" minlength="2" required formControlName="tipoSangre">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Historia Clínica" minlength="2" required formControlName="historiaClinica">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Enfermedades" minlength="2" required formControlName="enfermedades">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="frmPaciente.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color="accent" type="button" routerLink="/paciente">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+
+</form>

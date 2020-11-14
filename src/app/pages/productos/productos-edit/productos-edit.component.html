@@ -1,0 +1,15 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Nombre" [(ngModel)]="producto.nombre">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Cantidad" [(ngModel)]="producto.cantidad">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Precio" [(ngModel)]="producto.precio">
+  </mat-form-field>
+</div>
+<button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>

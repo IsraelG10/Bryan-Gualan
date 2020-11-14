@@ -1,0 +1,48 @@
+.example-container{
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header{
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field{
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table{
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-raised-button{
+  margin-left: auto;
+}
+
+.example-spacer{
+  flex: 1 1 auto;
+}
+
+.medicoCSS{
+  background: royalblue;
+  color: white;
+}
+
+#piso{
+  height: 100%;
+  width: 100%;
+  background-color: cornflowerblue;
+  color: white;
+  text-align:center;
+}
+
+.pisoCSS{
+  background: darkblue;
+  color: white;
+  font-size: 50px;
+}
+

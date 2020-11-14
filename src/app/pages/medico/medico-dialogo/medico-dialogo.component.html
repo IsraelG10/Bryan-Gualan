@@ -1,0 +1,39 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Cédula" [(ngModel)]="medico.cedula">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Nombres" [(ngModel)]="medico.nombres">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Apellidos" [(ngModel)]="medico.apellidos">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Dirección" [(ngModel)]="medico.direccion">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Edad" [(ngModel)]="medico.edad">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" [(ngModel)]="medico.email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Sexo" [(ngModel)]="medico.sexo">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Teléfono" [(ngModel)]="medico.telefono">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Consultorio" [(ngModel)]="medico.consultorio">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Tipo Sangre" [(ngModel)]="medico.tipoSangre">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Foto URL" [(ngModel)]="medico.fotoUrl">
+  </mat-form-field>
+  <br>
+  <img mat-card-image [src]="medico.fotoUrl" alt="Foto Médico" width="50%" height="50%" *ngIf="medico.fotoUrl != null">
+</div>
+<button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>

@@ -1,0 +1,18 @@
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.block-title {
+  margin: 1px 1px 1px 1px;
+  color: gray;
+  font-size: 28px;
+  text-align: center;
+  text-justify: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
